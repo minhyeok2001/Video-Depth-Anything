@@ -168,3 +168,10 @@ We confirmed that our proposed temporal enhancement module can be applied withou
 and it provides a promising foundation for future research. 
 
 With a larger dataset and more refined architectural designs, we believe this approach can lead to meaningful gains.
+
+---
+
+This repository is not the joint project repository that I worked on with my co-worker.
+
+The original collaborative repository can be found here: [link](https://github.com/standard-jh/Video-Depth-Anything).
+
