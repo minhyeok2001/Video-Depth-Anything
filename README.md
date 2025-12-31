@@ -57,33 +57,114 @@ Our intention is to incorporate temporal cues between neighboring frames at the 
 
 enabling the temporal head to operate with richer and more motion-aware representations.
 
+---
+### Result
+We've tested our model with 3 different dataset. MYN-Synth, TartanAir and VKITTI.
+
+'basic' stands for original model architecture, and 'Conv' stands for our modified version in the table below.
+
+<table>
+  <tr>
+    <th>Dataset</th>
+    <th>Method</th>
+    <th>absrel</th>
+    <th>δ1</th>
+    <th>TAE</th>
+  </tr>
+
+  <tr>
+    <td>MVS-Synth</td>
+    <td><b>Basic</b></td>
+    <td>0.1089</td>
+    <td>0.89306</td>
+    <td>1.33987</td>
+  </tr>
+  <tr>
+    <td>MVS-Synth</td>
+    <td><b>Conv</b></td>
+    <td>0.1108</td>
+    <td>0.88936</td>
+    <td>1.31396</td>
+  </tr>
+
+  <tr>
+    <td>TartanAir</td>
+    <td><b>Basic</b></td>
+    <td>0.20424</td>
+    <td>0.56756</td>
+    <td>0.15483</td>
+  </tr>
+  <tr>
+    <td>TartanAir</td>
+    <td><b>Conv</b></td>
+    <td>0.20421</td>
+    <td>0.56765</td>
+    <td>0.15578</td>
+  </tr>
+
+  <tr>
+    <td>VKITTI</td>
+    <td><b>Conv</b></td>
+    <td>0.10635</td>
+    <td>0.87013</td>
+    <td>0.63285</td>
+  </tr>
+  <tr>
+    <td>VKITTI</td>
+    <td><b>Basic</b></td>
+    <td>0.11197</td>
+    <td>0.86424</td>
+    <td>0.66177</td>
+  </tr>
+</table>
+
+The experimental results above may seem a bit surprising, as the TAE values are lower than what we expected based on the original paper. 
+
+We believe this outcome is likely due to the relatively small dataset size and our experimental limitations (e.g., storage constraints).
+
+Since we used the official metric implementation from the original repository, we assume the measurements are correct. 
+
+Therefore, our focus is on comparing the baseline method with our modified approach rather than emphasizing the absolute metric values.
+
+You can check the full experiment results on W&B — [click here](https://wandb.ai/Depth-Finder/Temporal_Diff_Flow_experiment).
+
+And the table below is the average of 3 different datasets.
+
 <table>
   <thead>
     <tr>
-      <th>GTA</th>
-      <th>absrel</th>
-      <th>δ1</th>
-      <th>TAE</th>
-      <th>Train Loss</th>
-      <th>Val Loss</th>
+      <th>Method</th>
+      <th>avg absrel</th>
+      <th>avg δ1</th>
+      <th>avg TAE</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><b>Basic</b></td>
-      <td>0.1089</td>
-      <td>0.89306</td>
-      <td>1.33987</td>
-      <td>0.068027</td>
-      <td>0.14613</td>
+      <td>0.14170</td>
+      <td>0.77495</td>
+      <td>0.71882</td>
     </tr>
     <tr>
       <td><b>Conv</b></td>
-      <td>0.1108</td>
-      <td>0.88936</td>
-      <td>1.31396</td>
-      <td>0.06674</td>
-      <td>0.14968</td>
+      <td><b>0.14045</b></td>
+      <td><b>0.77571</b></td>
+      <td><b>0.70086</b></td>
     </tr>
   </tbody>
 </table>
+
+--- 
+
+### Conclusion
+
+Unfortunately, no notable improvements were observed in either the depth metrics (delta1,absrel) or the temporal metrics(TAE).
+
+Although the results did not show significant improvements in either depth or temporal performance, this experiment was still valuable.
+
+We confirmed that our proposed temporal enhancement module can be applied without harming the baseline performance, 
+
+and it provides a promising foundation for future research. 
+
+With a larger dataset and more refined architectural designs, we believe this approach can lead to meaningful gains.
